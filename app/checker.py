@@ -14,7 +14,7 @@ class Checker():
         self.name = name
         if settings.DEBUG:
             self.driver = webdriver.Chrome(
-                executable_path='app/drivers/chromedriver'
+                executable_path='/home/carlos/Documents/registro-entrada/auto-checker/app/drivers/chromedriver'
             )
         else:
             options = webdriver.ChromeOptions()
@@ -60,14 +60,20 @@ class Checker():
         self._login()
         self._click_on_checkin_out_button()
         arrival_button = self._wait_until('button.checkButton.arrival')
+        time.sleep(2)
         arrival_button.click()
         time.sleep(2)
         self.driver.quit()
 
 
 if __name__ == '__main__':
-    name = str(sys.argv[2])
-    checking_type = str(sys.argv[1])
+    try:
+        name = str(sys.argv[2])
+        checking_type = str(sys.argv[1])
+    except:
+        name = 'mochis'
+        checking_type = 'check_in'
+
     checker = Checker(name=name)
     if checking_type == 'check_in':
         checker.check_in()
