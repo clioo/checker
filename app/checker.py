@@ -73,12 +73,6 @@ class Checker():
         time.sleep(3)
         check_out_button.click()
         self._click_on_checkin_out_button()
-        try:
-            self._wait_until('button.checkButton.arrival')
-        except:
-            self._click_on_checkin_out_button()
-            check_out_button.click()
-            time.sleep(2)
         self.driver.quit()
 
 
