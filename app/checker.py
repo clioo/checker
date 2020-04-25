@@ -60,9 +60,25 @@ class Checker():
         self._login()
         self._click_on_checkin_out_button()
         arrival_button = self._wait_until('button.checkButton.arrival')
-        time.sleep(2)
+        time.sleep(3)
         arrival_button.click()
         time.sleep(2)
+        self.driver.quit()
+
+    def check_out(self):
+        """Method for leaving"""
+        self._login()
+        self._click_on_checkin_out_button()
+        check_out_button = self._wait_until('button.leave')
+        time.sleep(3)
+        check_out_button.click()
+        self._click_on_checkin_out_button()
+        try:
+            self._wait_until('button.checkButton.arrival')
+        except:
+            self._click_on_checkin_out_button()
+            check_out_button.click()
+            time.sleep(2)
         self.driver.quit()
 
 
@@ -77,3 +93,5 @@ if __name__ == '__main__':
     checker = Checker(name=name)
     if checking_type == 'check_in':
         checker.check_in()
+    elif checking_type == 'check_out':
+        checker.check_out()
