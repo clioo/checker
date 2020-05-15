@@ -52,7 +52,7 @@ class Checker():
         pass
 
     def _click_on_checkin_out_button(self):
-        clock_check_io_button = self._wait_until('div.plecaLogo_1bed1318 div.image-35')
+        clock_check_io_button = self._wait_until('button#buttonId')
         clock_check_io_button.click()
 
     def check_in(self):
@@ -60,9 +60,7 @@ class Checker():
         self._login()
         self._click_on_checkin_out_button()
         arrival_button = self._wait_until('button.checkButton.arrival')
-        time.sleep(3)
         arrival_button.click()
-        time.sleep(2)
         self.driver.quit()
 
     def check_out(self):

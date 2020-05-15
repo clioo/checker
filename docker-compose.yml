@@ -9,4 +9,4 @@ services:
         volumes: 
          - ./app:/app
         command: >
-         sh -c "python checker.py"
+         sh -c "cd app && python checker.py check_in mochis"
