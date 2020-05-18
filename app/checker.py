@@ -60,7 +60,9 @@ class Checker():
         self._login()
         self._click_on_checkin_out_button()
         arrival_button = self._wait_until('button.checkButton.arrival')
+        time.sleep(3)
         arrival_button.click()
+        time.sleep(2)
         self.driver.quit()
 
     def check_out(self):
