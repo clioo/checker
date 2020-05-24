@@ -52,7 +52,8 @@ class Checker():
         pass
 
     def _click_on_checkin_out_button(self):
-        clock_check_io_button = self._wait_until('button.checkButton.leave')
+        """The clock button"""
+        clock_check_io_button = self._wait_until('#buttonId')
         clock_check_io_button.click()
 
     def check_in(self):
