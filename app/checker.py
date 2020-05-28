@@ -27,7 +27,7 @@ class Checker():
     def _wait_until(self, query, by=By.CSS_SELECTOR, until=EC.element_to_be_clickable):
         """generic wait until class with default csss selector and
         element to be clickable"""
-        element = WebDriverWait(self.driver, 30).until(
+        element = WebDriverWait(self.driver, 60 * 5).until(
             until((by, query))
         )
         return element
