@@ -13,9 +13,7 @@ class Checker():
     def __init__(self, name):
         self.name = name
         if settings.DEBUG:
-            self.driver = webdriver.Chrome(
-                executable_path='/home/carlos/Documents/registro-entrada/auto-checker/app/drivers/chromedriver'
-            )
+            self.driver = webdriver.Chrome()
         else:
             options = webdriver.ChromeOptions()
             options.add_argument('--headless')
@@ -27,12 +25,13 @@ class Checker():
     def _wait_until(self, query, by=By.CSS_SELECTOR, until=EC.element_to_be_clickable):
         """generic wait until class with default csss selector and
         element to be clickable"""
-        element = WebDriverWait(self.driver, 60 * 5).until(
+        element = WebDriverWait(self.driver, 60 * 2).until(
             until((by, query))
         )
         return element
 
     def _login(self):
+        print('Logging in')
         EMAIL = settings.USERS[self.name][0]
         PASSWORD = settings.USERS[self.name][1]
         self.driver.get('https://onesofttek.sharepoint.com/sites/home/SitePages/Menu.aspx')
@@ -53,6 +52,7 @@ class Checker():
 
     def _click_on_checkin_out_button(self):
         """The clock button"""
+        print('Clicking the check_out check_in button')
         clock_check_io_button = self._wait_until('#buttonId')
         clock_check_io_button.click()
 
